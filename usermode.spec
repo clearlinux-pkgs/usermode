@@ -4,7 +4,7 @@
 #
 Name     : usermode
 Version  : 1.111
-Release  : 2
+Release  : 3
 URL      : https://fedorahosted.org/releases/u/s/usermode/usermode-1.111.tar.xz
 Source0  : https://fedorahosted.org/releases/u/s/usermode/usermode-1.111.tar.xz
 Summary  : No detailed summary available
@@ -63,6 +63,14 @@ Group: Documentation
 doc components for the usermode package.
 
 
+%package extras
+Summary: extras components for the usermode package.
+Group: Default
+
+%description extras
+extras components for the usermode package.
+
+
 %package locales
 Summary: locales components for the usermode package.
 Group: Default
@@ -94,8 +102,8 @@ rm -rf %{buildroot}
 
 %files bin
 %defattr(-,root,root,-)
+%exclude /usr/bin/consolehelper-gtk
 /usr/bin/consolehelper
-/usr/bin/consolehelper-gtk
 /usr/bin/pam-panel-icon
 /usr/bin/userhelper
 /usr/bin/userinfo
@@ -121,6 +129,10 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %doc /usr/share/man/man1/*
 %doc /usr/share/man/man8/*
+
+%files extras
+%defattr(-,root,root,-)
+/usr/bin/consolehelper-gtk
 
 %files locales -f usermode.lang 
 %defattr(-,root,root,-)
