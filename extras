@@ -1,1 +1,5 @@
 /usr/bin/consolehelper-gtk
+/usr/bin/userinfo
+/usr/bin/userpasswd
+/usr/bin/usermount
+/usr/bin/pam-panel-icon
