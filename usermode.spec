@@ -4,9 +4,9 @@
 #
 Name     : usermode
 Version  : 1.111
-Release  : 7
-URL      : https://fedorahosted.org/releases/u/s/usermode/usermode-1.111.tar.xz
-Source0  : https://fedorahosted.org/releases/u/s/usermode/usermode-1.111.tar.xz
+Release  : 8
+URL      : http://releases.pagure.org/usermode/usermode-1.111.tar.xz
+Source0  : http://releases.pagure.org/usermode/usermode-1.111.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -83,16 +83,23 @@ locales components for the usermode package.
 %setup -q -n usermode-1.111
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+export LANG=C
+export SOURCE_DATE_EPOCH=1494962433
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
+export SOURCE_DATE_EPOCH=1494962433
 rm -rf %{buildroot}
 %make_install
 %find_lang usermode
@@ -138,6 +145,6 @@ rm -rf %{buildroot}
 /usr/bin/usermount
 /usr/bin/userpasswd
 
-%files locales -f usermode.lang 
+%files locales -f usermode.lang
 %defattr(-,root,root,-)
 

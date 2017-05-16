@@ -1,5 +1,5 @@
 PKG_NAME := usermode
-URL := https://fedorahosted.org/releases/u/s/usermode/usermode-1.111.tar.xz
-ARCHIVES :=
+URL := http://releases.pagure.org/usermode/usermode-1.111.tar.xz
+
 
 include ../common/Makefile.common
