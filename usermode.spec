@@ -4,7 +4,7 @@
 #
 Name     : usermode
 Version  : 1.111
-Release  : 9
+Release  : 10
 URL      : http://releases.pagure.org/usermode/usermode-1.111.tar.xz
 Source0  : http://releases.pagure.org/usermode/usermode-1.111.tar.xz
 Summary  : No detailed summary available
