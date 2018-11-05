@@ -1,0 +1,7 @@
+Configure miss: pam_start
+Configure miss: misc_conv
+Configure miss: whether we should avoid deprecated functions
+Configure miss: whether we should enable debugging messages
+Configure miss: whether we should use ElectricFence
+Configure miss: whether we should use SELinux
+Configure miss: whether we should use -Werror
