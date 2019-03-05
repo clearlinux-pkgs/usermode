@@ -4,10 +4,10 @@
 #
 Name     : usermode
 Version  : 1.113
-Release  : 11
+Release  : 12
 URL      : http://releases.pagure.org/usermode/usermode-1.113.tar.xz
 Source0  : http://releases.pagure.org/usermode/usermode-1.113.tar.xz
-Summary  : No detailed summary available
+Summary  : Allow configured programs to be run with superuser privileges by ordinary users
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: usermode-bin = %{version}-%{release}
@@ -43,7 +43,6 @@ Summary: bin components for the usermode package.
 Group: Binaries
 Requires: usermode-data = %{version}-%{release}
 Requires: usermode-license = %{version}-%{release}
-Requires: usermode-man = %{version}-%{release}
 
 %description bin
 bin components for the usermode package.
@@ -97,7 +96,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541447415
+export SOURCE_DATE_EPOCH=1551796262
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -109,7 +109,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1541447415
+export SOURCE_DATE_EPOCH=1551796262
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/usermode
 cp COPYING %{buildroot}/usr/share/package-licenses/usermode/COPYING
@@ -131,9 +131,9 @@ cp COPYING %{buildroot}/usr/share/package-licenses/usermode/COPYING
 
 %files data
 %defattr(-,root,root,-)
-/usr/share/applications/redhat-userinfo.desktop
-/usr/share/applications/redhat-usermount.desktop
-/usr/share/applications/redhat-userpasswd.desktop
+%exclude /usr/share/applications/redhat-userinfo.desktop
+%exclude /usr/share/applications/redhat-usermount.desktop
+%exclude /usr/share/applications/redhat-userpasswd.desktop
 /usr/share/pixmaps/badge-small.png
 /usr/share/pixmaps/disks.png
 /usr/share/pixmaps/keyring.png
@@ -151,6 +151,9 @@ cp COPYING %{buildroot}/usr/share/package-licenses/usermode/COPYING
 /usr/bin/userinfo
 /usr/bin/usermount
 /usr/bin/userpasswd
+/usr/share/applications/redhat-userinfo.desktop
+/usr/share/applications/redhat-usermount.desktop
+/usr/share/applications/redhat-userpasswd.desktop
 
 %files license
 %defattr(0644,root,root,0755)

@@ -3,3 +3,6 @@
 /usr/bin/userpasswd
 /usr/bin/usermount
 /usr/bin/pam-panel-icon
+/usr/share/applications/redhat-userinfo.desktop
+/usr/share/applications/redhat-usermount.desktop
+/usr/share/applications/redhat-userpasswd.desktop
