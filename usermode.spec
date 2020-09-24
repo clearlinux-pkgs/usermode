@@ -4,7 +4,7 @@
 #
 Name     : usermode
 Version  : 1.113
-Release  : 13
+Release  : 14
 URL      : https://releases.pagure.org/usermode/usermode-1.113.tar.xz
 Source0  : https://releases.pagure.org/usermode/usermode-1.113.tar.xz
 Summary  : Allow configured programs to be run with superuser privileges by ordinary users
