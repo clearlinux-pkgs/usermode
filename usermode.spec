@@ -4,10 +4,10 @@
 #
 Name     : usermode
 Version  : 1.113
-Release  : 14
+Release  : 15
 URL      : https://releases.pagure.org/usermode/usermode-1.113.tar.xz
 Source0  : https://releases.pagure.org/usermode/usermode-1.113.tar.xz
-Summary  : Allow configured programs to be run with superuser privileges by ordinary users
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: usermode-bin = %{version}-%{release}
@@ -90,29 +90,34 @@ man components for the usermode package.
 
 %prep
 %setup -q -n usermode-1.113
+cd %{_builddir}/usermode-1.113
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1551796262
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604600399
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1551796262
+export SOURCE_DATE_EPOCH=1604600399
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/usermode
-cp COPYING %{buildroot}/usr/share/package-licenses/usermode/COPYING
+cp %{_builddir}/usermode-1.113/COPYING %{buildroot}/usr/share/package-licenses/usermode/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
 %make_install
 %find_lang usermode
 
@@ -121,19 +126,11 @@ cp COPYING %{buildroot}/usr/share/package-licenses/usermode/COPYING
 
 %files bin
 %defattr(-,root,root,-)
-%exclude /usr/bin/consolehelper-gtk
-%exclude /usr/bin/pam-panel-icon
-%exclude /usr/bin/userinfo
-%exclude /usr/bin/usermount
-%exclude /usr/bin/userpasswd
 /usr/bin/consolehelper
 /usr/bin/userhelper
 
 %files data
 %defattr(-,root,root,-)
-%exclude /usr/share/applications/redhat-userinfo.desktop
-%exclude /usr/share/applications/redhat-usermount.desktop
-%exclude /usr/share/applications/redhat-userpasswd.desktop
 /usr/share/pixmaps/badge-small.png
 /usr/share/pixmaps/disks.png
 /usr/share/pixmaps/keyring.png
@@ -157,7 +154,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/usermode/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/usermode/COPYING
+/usr/share/package-licenses/usermode/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
 
 %files man
 %defattr(0644,root,root,0755)
