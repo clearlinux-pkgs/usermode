@@ -1,4 +1,3 @@
-1.113
+1.114
 Linux-PAM-dev
-pkgconfig(ice)
-pkgconfig(sm)
+pkgconfig(x11)
